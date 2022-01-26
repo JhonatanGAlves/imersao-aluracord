@@ -1,4 +1,5 @@
-import React, { useState, ChangeEventHandler } from 'react'
+import React, { useState } from 'react'
+import { ChangeEventHandler, FormEventHandler } from 'react'
 import styled from 'styled-components'
 
 type InputProps = {
@@ -7,6 +8,8 @@ type InputProps = {
   placeholder: string
   buttonValue: string
   onChange: ChangeEventHandler
+  typeButton: "submit" | "button" | "reset"
+  onSubmit: FormEventHandler
 }
 
 export const Form = (props: InputProps) => {
@@ -24,7 +27,12 @@ export const Form = (props: InputProps) => {
         placeholder={props.placeholder}
         onChange={props.onChange || handleChange}
       />
-      <StyledButton>{props.buttonValue}</StyledButton>
+      <StyledButton
+        type={props.typeButton}
+        onSubmit={props.onSubmit}
+      >
+        {props.buttonValue}
+      </StyledButton>
     </StyledForm>
   )
 }
